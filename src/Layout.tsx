@@ -4,11 +4,9 @@ import {Navbar} from "./components/Navbar";
 
 export const Layout = () => {
 
-    const user = true;
-
     return (
             <div>
-                <Navbar user={user}/>
+                <Navbar/>
                 <Outlet />
             </div>
     );

@@ -1,25 +1,30 @@
 import React from 'react';
 import s from './Post.module.scss'
 import {posts} from "../../data";
-import {Link, useLocation, useParams} from 'react-router-dom';
+import {Link, useLocation, useParams, useNavigate} from 'react-router-dom';
 
 
 type PostType = {}
 export const Post: React.FC<PostType> = React.memo(() => {
 
-    //используем useLocation
-    /*const location = useLocation();
-    const path = location.pathname.split('/')[2];
-*/
-    //используем useParams
-    console.log(useParams());
-    const {id} = useParams();
+    //useNavigate - замена useHistory
+    const navigate = useNavigate(); //является функцией
 
+    //реализуем функцию "назад"
+    //-1 - на одну страницу назад (-2,3 т.д)
+    // можем использовать и положительные цифры - вперед
+    const goBack = () => navigate(-1)
+
+    const {id} = useParams();
     const post = posts.find(p => p.id.toString() === id);
+
+
+
 
     return (
         <div className={s.post}>
             <div className={s.container}>
+                <button onClick={goBack} className={s.btn}>go back</button>
                 <h1 className={s.title}>{post && post.title}</h1>
                 <div className={s.image}>
                     <img src={post && post.img} alt=""/>
