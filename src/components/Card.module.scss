@@ -18,16 +18,17 @@
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   row-gap: 10px ;
 }
 .title {
-  flex: 1 1 auto;
   font-size: 18px;
   line-height: 130%;
+  flex: 1 1 auto;
 }
 .image {
   position: relative;
-  padding: 0 0 80% 0;
+  padding: 0 0 90% 0;
   img {
     position: absolute;
     top: 0;
@@ -37,7 +38,9 @@
     object-fit: cover;
   }
 }
+.desc {
 
+}
 .btn {
   width: 80%;
   margin: 0 auto;

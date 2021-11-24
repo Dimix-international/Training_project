@@ -42,6 +42,7 @@ export const App = () => {
                     <Route path={'post/create'}
                            element={<Navigate to={'/post/new'} replace/>}/>
                     <Route path={'post/:id/edit'} element={<EditedPost/>}/>
+                    <Route path={'*'} element={<div>Ошибка</div>}/>
                 </Route>
             </Routes>
         </AuthProvider>
