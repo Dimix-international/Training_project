@@ -1,0 +1,15 @@
+.link {
+  font-size: 24px;
+  color: #fa89fa;
+  line-height: 130%;
+  transition: color 0.3s;
+  font-weight: 500;
+
+  &:hover {
+    color: #ffffff;
+  }
+}
+.link.active {
+  color: #fff;
+  text-shadow: 2px 2px 17px rgb(108, 105, 105);
+}

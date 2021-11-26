@@ -2,16 +2,21 @@
   height: 50px;
   background-color: purple;
   color:#fff;
+}
+.container {
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 .logo {
   font-size: 24px;
   font-weight: 700;
 }
 .link {
-  color: inherit; //отменяем цвет
+  color: #fff; //отменяем цвет
   text-decoration: none;
 }
 .list {

@@ -10,6 +10,7 @@ import {Layout} from "./Layout";
 
 import {RequireAuth} from "./hoc/RequireAuth";
 import {AuthProvider} from "./hoc/AuthProvider";
+import {AboutPage} from "./pages/About/About";
 
 export const App = () => {
 
@@ -42,6 +43,15 @@ export const App = () => {
                     <Route path={'post/create'}
                            element={<Navigate to={'/post/new'} replace/>}/>
                     <Route path={'post/:id/edit'} element={<EditedPost/>}/>
+
+                    {/*about/* -любой адрес который начинается с about/ всегда имеет компонент AboutPage*/}
+                    <Route path={'about'} element={<AboutPage />}>
+                        <Route path={'contacts'}
+                               element={<p>+375 29 151 25 30</p>}/>
+                        <Route path={'team'}
+                               element={<p>Dimix company</p>}/>
+                    </Route>
+
                     <Route path={'*'} element={<div>Ошибка</div>}/>
                 </Route>
             </Routes>
