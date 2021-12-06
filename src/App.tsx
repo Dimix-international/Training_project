@@ -12,7 +12,7 @@ import {RequireAuth} from "./hoc/RequireAuth";
 import {AuthProvider} from "./hoc/AuthProvider";
 import {AboutPage} from "./pages/About/About";
 import {OurTeam} from "./pages/OurTeam/OurTeam";
-import {Contacts} from "./pages/Contacts/Contacts";
+import {OurProducts} from "./pages/Products/Products";
 
 export const App = () => {
 
@@ -49,9 +49,11 @@ export const App = () => {
                     {/*about/* -любой адрес который начинается с about/ всегда имеет компонент AboutPage*/}
                     <Route path={'about'} element={<AboutPage />}>
                         <Route path={'contacts'}
-                               element={<Contacts />}/>
+                               element={<p>+375 29 151 25 30</p>}/>
                         <Route path={'team'}
                                element={<OurTeam />}/>
+                        <Route path={'products'}
+                               element={<OurProducts />}/>
                     </Route>
 
                     <Route path={'*'} element={<div>Ошибка</div>}/>

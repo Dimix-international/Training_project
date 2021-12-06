@@ -16,6 +16,8 @@ export const AboutPage: React.FC<AboutPageType> = React.memo(() => {
                             contacts</Link></li>
                         <li><Link className={s.link} to={'team'}>Our team</Link>
                         </li>
+                        <li><Link className={s.link} to={'products'}>Our products</Link>
+                        </li>
                     </ul>
                 </div>
 
