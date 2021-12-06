@@ -18,11 +18,10 @@ export const CardFilter: React.FC<CardFilterType> = React.memo((props) => {
 
     const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const form = e.target;
+        const form = e.currentTarget;
         //получим то что пользователь набрал руками
-        //@ts-ignore
+
         const query = form.search.value;
-        //@ts-ignore
         const isLatest = form.latest.checked;
 
         const params: URLSearchParamsInit = {};

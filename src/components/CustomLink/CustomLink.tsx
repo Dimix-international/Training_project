@@ -5,7 +5,7 @@ import s from './CustomLink.module.scss'
 
 type CustomLinkType = {
     to:string
-    addClass? :string
+    addclass :string
 }
 export const CustomLink: React.FC<CustomLinkType> = (
     {children, to, ...props}) => {
@@ -17,7 +17,7 @@ export const CustomLink: React.FC<CustomLinkType> = (
         //если главная страница - то берем полный путь т.е. состоит только из /
         end: to.length === 1
     });
-    const finallyClass = match ? `${s.link} ${s.active} ${props.addClass}` : `${s.link} ${props.addClass}`
+    const finallyClass = match ? `${s.link} ${s.active} ${props.addclass}` : `${s.link} ${props.addclass}`
 
     return (
         <Link

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Routes, Route, Link, Outlet} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 import s from './About.module.scss'
 
 

@@ -22,7 +22,7 @@ export const Navbar: React.FC<NavbarType> = React.memo((props) => {
         <aside className={s.navbar}>
             <div className={s.container}>
                 <span className={s.logo}>
-                <CustomLink addClass={s.link} to={'/'}>Dimix App</CustomLink>
+                <CustomLink addclass={s.link} to={'/'}>Dimix App</CustomLink>
             </span>
                 {
                     user
@@ -42,12 +42,12 @@ export const Navbar: React.FC<NavbarType> = React.memo((props) => {
                                 </button>
 
                             </ul>
-                            <CustomLink addClass={`${s.link} ${s.logo}`}
+                            <CustomLink addclass={`${s.link} ${s.logo}`}
                                   to={'/post/new'}> Create new post</CustomLink>
                         </>
-                        : <CustomLink addClass={s.link} to={'/login'}>Login in</CustomLink>
+                        : <CustomLink addclass={s.link} to={'/login'}>Login in</CustomLink>
                 }
-                <CustomLink addClass={s.link} to={'/about'}> About us</CustomLink>
+                <CustomLink addclass={s.link} to={'/about'}> About us</CustomLink>
             </div>
 
         </aside>

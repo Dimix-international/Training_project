@@ -11,6 +11,8 @@ import {Layout} from "./Layout";
 import {RequireAuth} from "./hoc/RequireAuth";
 import {AuthProvider} from "./hoc/AuthProvider";
 import {AboutPage} from "./pages/About/About";
+import {OurTeam} from "./pages/OurTeam/OurTeam";
+import {Contacts} from "./pages/Contacts/Contacts";
 
 export const App = () => {
 
@@ -47,9 +49,9 @@ export const App = () => {
                     {/*about/* -любой адрес который начинается с about/ всегда имеет компонент AboutPage*/}
                     <Route path={'about'} element={<AboutPage />}>
                         <Route path={'contacts'}
-                               element={<p>+375 29 151 25 30</p>}/>
+                               element={<Contacts />}/>
                         <Route path={'team'}
-                               element={<p>Dimix company</p>}/>
+                               element={<OurTeam />}/>
                     </Route>
 
                     <Route path={'*'} element={<div>Ошибка</div>}/>
