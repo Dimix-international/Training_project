@@ -4,11 +4,20 @@ import './index.css';
 import {App} from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from "react-router-dom";
-
+import {QueryClientProvider} from "react-query";
+import {queryClient} from "./hook/react-query/query-client";
+import {ReactQueryDevtools} from "react-query/devtools";
+import {AppProvider} from "./providers/AppProvider";
+import './firebase'; //для firebase
 
 ReactDOM.render(
     <BrowserRouter>
-        <App/>
+        <AppProvider>
+            <QueryClientProvider client={queryClient}>
+                <App/>
+                <ReactQueryDevtools/>
+            </QueryClientProvider>
+        </AppProvider>
     </BrowserRouter>,
     document.getElementById('root'));
 

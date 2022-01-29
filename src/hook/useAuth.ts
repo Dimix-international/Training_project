@@ -1,9 +1,8 @@
 import {useContext} from "react";
-import {AuthContext} from "../hoc/AuthProvider";
+import {AuthContext} from "../context/auth-context";
 
 export const useAuth = () => {
-    return useContext(AuthContext); //получаем доступ к контексту
+    const context = useContext(AuthContext);
+    if (!context) throw new Error('useShortLink must be used inside a ShortLink');
+    return context; //получаем доступ к контексту
 }
-
-//чтобы не делать все выше в каждой компоненте вынесли все в функцию
-//после ее вызова все данные value из AuthContext будут доступны

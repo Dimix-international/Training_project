@@ -27,7 +27,7 @@ export const OurProducts = () => {
             const response = await axios.get<Array<ResponseGetProductsType>>('https://fakestoreapi.com/products');
             setProducts(response.data)
         } catch (e) {
-            console.log(e.message)
+            console.log(e )
         }
     }
 

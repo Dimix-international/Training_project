@@ -1,4 +1,9 @@
-import {useTable, usePagination} from "react-table";
+import {
+    useTable,
+    usePagination,
+    UsePaginationInstanceProps,
+    TableInstance
+} from "react-table";
 import MOCK_DATA from '../../../data/MOCK_DATA.json';
 import {COLUMNS, GROUPED_COLUMNS} from "../column";
 import {useMemo} from "react";
@@ -13,23 +18,14 @@ export const PaginationTable = () => {
         getTableProps,
         getTableBodyProps,
         headerGroups,
-        // @ts-ignore
         page,
-        // @ts-ignore
         nextPage,
-        // @ts-ignore
         previousPage,
-        // @ts-ignore
         canNextPage,
-        // @ts-ignore
         canPreviousPage,
-        // @ts-ignore
         pageOptions,
-        // @ts-ignore
         gotoPage,
-        // @ts-ignore
         pageCount,
-        // @ts-ignore
         setPageSize,
         state,
         prepareRow,
@@ -39,7 +35,7 @@ export const PaginationTable = () => {
         data,
 
         initialState: {pageIndex: 3} as any //стартовая страница 4
-    }, usePagination);
+    }, usePagination) as UsePaginationInstanceProps<any> & TableInstance<any>;
 
     const {pageIndex, pageSize} = state as any;
 

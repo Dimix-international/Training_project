@@ -8,9 +8,9 @@ type RequireAuthType = {}
 export const RequireAuth: React.FC<RequireAuthType> = React.memo(({children}: any) => {
 
     const location = useLocation();
-    const {user} = useAuth();
+    const {authUser:user} = useAuth();
 
-    if (!user) {
+    if (!user.token) {
         //если не авторизованы - сделаем переадресацию
         //state={{from: location}} - уточняем откуда мы пришли
         // чтобы после регистрации могли вернуться на страницу с которой был редирект

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link, useNavigate} from 'react-router-dom';
 import s from './Navbar.module.scss'
 import {useAuth} from "../hook/useAuth";
 import {CustomLink} from "./CustomLink/CustomLink";
@@ -8,14 +7,10 @@ type NavbarType = {};
 
 export const Navbar: React.FC<NavbarType> = React.memo((props) => {
 
-
-    const navigate = useNavigate();
-
-    const {user} = useAuth();
-    const {signOut} = useAuth();
+    const {authUser: user, authDispatch} = useAuth();
 
     const onClickHandler =() => {
-        signOut(() => navigate('/', {replace:true}))
+        authDispatch({type:'delete-user'})
     }
 
     return (
@@ -25,7 +20,7 @@ export const Navbar: React.FC<NavbarType> = React.memo((props) => {
                 <CustomLink addclass={s.link} to={'/'}>Dimix App</CustomLink>
             </span>
                 {
-                    user
+                    user.token
                         ? <>
                             <ul className={s.list}>
                                 <li className={s.list__item}>
@@ -34,18 +29,18 @@ export const Navbar: React.FC<NavbarType> = React.memo((props) => {
                                          alt="avatar"/>
                                 </li>
                                 <li className={s.list__item}>
-                                    {user}
+                                    {user.email}
                                 </li>
                                 <button onClick={onClickHandler} type={'button'}
                                         className={s.btn}>
-                                    Logout
+                                    Sign out
                                 </button>
 
                             </ul>
                             <CustomLink addclass={`${s.link} ${s.logo}`}
                                   to={'/post/new'}> Create new post</CustomLink>
                         </>
-                        : <CustomLink addclass={s.link} to={'/login'}>Login in</CustomLink>
+                        : <CustomLink addclass={s.link} to={'/login'}>Sign in</CustomLink>
                 }
                 <CustomLink addclass={s.link} to={'/about'}> About us</CustomLink>
             </div>

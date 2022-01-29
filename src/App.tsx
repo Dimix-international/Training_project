@@ -2,17 +2,18 @@ import React from 'react';
 import './App.css'
 import {Home} from "./pages/Home/Home";
 import {Post} from "./pages/Post/Post";
-import {Login} from "./pages/Login/Login";
-import {Routes, Route, Navigate} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import {NewPost} from "./pages/NewPost/NewPost";
 import {EditedPost} from "./pages/EditPost/EditedPost";
 import {Layout} from "./Layout";
 
 import {RequireAuth} from "./hoc/RequireAuth";
-import {AuthProvider} from "./hoc/AuthProvider";
+import {AuthProvider} from "./providers/AuthProvider";
 import {AboutPage} from "./pages/About/About";
 import {OurTeam} from "./pages/OurTeam/OurTeam";
 import {OurProducts} from "./pages/Products/Products";
+import {Login} from "./pages/LoginPage/Login/Login";
+import {Register} from "./pages/LoginPage/Register/Register";
 
 export const App = () => {
 
@@ -22,7 +23,7 @@ export const App = () => {
                 <Route path={'/'} element={<Layout/>}>
                     <Route index element={<Home/>}/>
                     <Route path={'login'} element={<Login/>}/>
-
+                    <Route path={'register'} element={<Register/>}/>
                     <Route path={'post/:id'} element={
                         <RequireAuth>
                             <Post/>
@@ -55,7 +56,6 @@ export const App = () => {
                         <Route path={'products'}
                                element={<OurProducts />}/>
                     </Route>
-
                     <Route path={'*'} element={<div>Ошибка</div>}/>
                 </Route>
             </Routes>
