@@ -1,35 +1,26 @@
 import React, {ReactElement, useMemo, useReducer} from "react";
 import {AuthContext} from "../context/auth-context";
 import {authReducer} from "../reducer/auth-reducer";
+import {getInfoUserStorage} from "../helpers/helper-storage";
 
 
 export type userType = {
+    name: string | null,
     email: string | null,
-    token: string | null,
     id: string | null,
 }
 
 export const AuthProvider = ({children}: { children: ReactElement }) => {
 
     const [authUser, authDispatch] = useReducer(authReducer, {
-        email: null,
-        token: null,
-        id: null,
+        name: getInfoUserStorage()?.name || null,
+        email: getInfoUserStorage()?.email ||null,
+        id: getInfoUserStorage()?.id ||null,
     })
-
-    //callback - функция navigate
-    /*    const signIn = (callback: () => void) => {
-            callback(); //будет сделана переадресация
-        }
-
-        const signOut = (callback: () => void) => {
-            callback();
-        }*/
 
     const value = useMemo(() => ({
         authUser, authDispatch
     }), [authUser])
-    //все эти методы будут доступны в любом компоненте
 
     return <AuthContext.Provider value={value}>
         {children}

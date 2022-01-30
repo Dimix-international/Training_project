@@ -3,6 +3,7 @@ import {
     AuthActionsType
 } from "../context/auth-context";
 import {userType} from "../providers/AuthProvider";
+import {setInfoUserStorage} from "../helpers/helper-storage";
 
 
 export type AuthReducerReturnType = {
@@ -12,11 +13,13 @@ export type AuthReducerReturnType = {
 export const authReducer = (state: userType, action: AuthActionsType): userType => {
 
     const signIn = (): userType => {
+        setInfoUserStorage(action.payload as userType)
         return {...action.payload as userType}
     }
 
     const signOut = (): userType => {
-        return {...state, token: null, email: null, id: null}
+        setInfoUserStorage({name: null, email: null, id: null})
+        return {...state, name: null, email: null, id: null}
     }
 
     const actions = {

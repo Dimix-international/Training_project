@@ -14,6 +14,7 @@ import {OurTeam} from "./pages/OurTeam/OurTeam";
 import {OurProducts} from "./pages/Products/Products";
 import {Login} from "./pages/LoginPage/Login/Login";
 import {Register} from "./pages/LoginPage/Register/Register";
+import {useAuth} from "./hook/useAuth";
 
 export const App = () => {
 

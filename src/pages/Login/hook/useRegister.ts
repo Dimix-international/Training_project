@@ -1,34 +1,35 @@
-import {getAuth, signInWithEmailAndPassword} from 'firebase/auth'
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
+} from 'firebase/auth'
 import {useCallback, useState} from "react";
 import {useAuth} from "../../../hook/useAuth";
+import {useApp} from "../../../hook/useApp";
 import {useNavigate, useSearchParams} from "react-router-dom";
-import {useQuery, useQueryClient} from "react-query";
+import {InfoType} from "./useSignIn";
+import {useQuery} from "react-query";
 
-export type InfoType = {
-    name:string,
-    email: string,
-    password: string,
-    fromPage?: string
-}
 
-const signUser = async (email: string, password: string) => {
+const registerUser = async (email: string, password: string) => {
     const auth = getAuth();
-    return signInWithEmailAndPassword(auth, email, password);
+    return createUserWithEmailAndPassword(auth, email, password);
 }
 
-export const useSignIn = () => {
+export const useRegister = () => {
     const {authDispatch} = useAuth();
+    const navigate = useNavigate(); //является функцией
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const [info, setInfo] = useState<InfoType>({
         name: '',
         email: '',
         password: '',
-        fromPage: '',
     })
-    const navigate = useNavigate(); //является функцией
-    const{error, isLoading} = useQuery(
+
+    const {error, isLoading} = useQuery(
         ['user', `${info.email}${info.password}`],
-        () => signUser(info.email, info.password),
+        () => registerUser(info.email, info.password),
         {
             enabled: !!info.email,
             staleTime: 0,
@@ -43,18 +44,18 @@ export const useSignIn = () => {
                     }
                 });
                 navigate(`${info.fromPage}`, {replace: true});
-            },
+            }
         }
     )
 
-    const setInfoHandler = useCallback((name:string, fromPage: string, email: string, password: string) => {
-        setInfo({name, fromPage, email, password})
+    const setInfoHandler = useCallback((name: string, email: string, password: string) => {
+        setInfo({name, email, password})
     }, [])
 
 
     return {
         setInfoHandler,
         error,
-        isLoading
+        isLoading,
     }
 }

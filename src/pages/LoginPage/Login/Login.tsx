@@ -3,18 +3,18 @@ import {Link, useLocation} from "react-router-dom";
 import {useSignIn} from "../../Login/hook/useSignIn";
 import {Form} from "../../Login/Form";
 import s from '../LoginPage.module.scss'
-import {useApp} from "../../../hook/useApp";
+
 
 export const Login = React.memo(() => {
 
     const location = useLocation();
-    const {handleLogin} = useSignIn();
-    const {appState} = useApp();
+    const {setInfoHandler, isLoading, error} = useSignIn();
+
     //получаем инфу откуда мы пришли
     const fromPage = (location.state as any)?.from?.pathname || '/';
 
-    const handleSubmit = (email: string, password: string) => {
-        handleLogin(fromPage, email, password)
+    const handleSubmit = (name:string, email: string, password: string) => {
+        setInfoHandler(name, fromPage, email, password)
     }
 
     return (
@@ -22,7 +22,7 @@ export const Login = React.memo(() => {
             <Form title={'Sign in'} callback={handleSubmit}/>
             <Link to={'/register'}> Create an account</Link>
             {
-                appState.isLoading && <p style={{
+                isLoading && <p style={{
                     marginTop: '5px',
                     color: 'purple',
                     fontSize: '18px',
@@ -30,9 +30,10 @@ export const Login = React.memo(() => {
                 }}>loading...</p>
             }
             {
-                appState.error && <p style={{
+                error && <p style={{
+                    marginTop: '5px',
                     color: 'red'
-                }}>{appState.error}</p>
+                }}>{(error as any).toString()}</p>
             }
         </div>
     )

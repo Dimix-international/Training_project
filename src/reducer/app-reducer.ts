@@ -15,16 +15,10 @@ export const appReducer = (state: AppStateType, action: AppActionsType): AppStat
         return {
             ...state,
             error: action.payload.error,
-            isLoading: action.payload.isLoading,
         }
     }
-    const setLoading = (): AppStateType => {
-        return {...state, isLoading: action.payload.isLoading}
-    }
-
     const actions = {
         'set-error-app': setError,
-        'set-loading-app': setLoading,
     } as AppReducerReturnType
 
     return (actions[action.type] || actions['default'])()

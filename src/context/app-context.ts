@@ -3,7 +3,6 @@ import {AppStateType} from "../providers/AppProvider";
 
 export enum AppActionOperationType {
     SetErrorApp = 'set-error-app',
-    SetLoadingApp = 'set-loading-app',
     Default = 'default'
 }
 

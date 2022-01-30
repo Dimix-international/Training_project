@@ -3,15 +3,13 @@ import {AppContext} from "../context/app-context";
 import {appReducer} from "../reducer/app-reducer";
 
 export type AppStateType = {
-    error?: string | null
-    isLoading: boolean,
+    error: string | null
 }
 
 export const AppProvider = ({children}: { children: ReactElement }) => {
 
     const [appState, appDispatch] = useReducer(appReducer, {
         error: null,
-        isLoading: false,
     })
 
     const value = useMemo(() => ({

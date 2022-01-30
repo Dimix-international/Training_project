@@ -1,17 +1,15 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {useRegister} from "../../Login/hook/useSignUp";
+import {useRegister} from "../../Login/hook/useRegister";
 import {Form} from "../../Login/Form";
 import s from '../LoginPage.module.scss'
-import {useApp} from "../../../hook/useApp";
 
 export const Register = React.memo(() => {
 
-    const {handleRegister} = useRegister();
-    const {appState} = useApp();
+    const {error, isLoading, setInfoHandler} = useRegister();
 
-    const handleSubmit = (email: string, password: string) => {
-        handleRegister(email, password)
+    const handleSubmit = (name:string, email: string, password: string) => {
+        setInfoHandler(name, email, password)
         //replace:true - по кнопке назад не сможем вернутся на страницу логинизации
     }
 
@@ -23,7 +21,7 @@ export const Register = React.memo(() => {
                 <Link to={'/login'}> Sign in</Link>
             </p>
             {
-                appState.isLoading && <p style={{
+                isLoading && <p style={{
                     marginTop: '5px',
                     color: 'purple',
                     fontSize: '18px',
@@ -31,10 +29,10 @@ export const Register = React.memo(() => {
                 }}>loading...</p>
             }
             {
-                appState.error && <p style={{
+                error && <p style={{
                     marginTop: '5px',
                     color: 'red'
-                }}>{appState.error}</p>
+                }}>{(error as any).toString()}</p>
             }
         </div>
     )
