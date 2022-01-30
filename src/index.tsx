@@ -12,7 +12,7 @@ import './firebase';
 import {AuthProvider} from "./providers/AuthProvider"; //для firebase
 
 ReactDOM.render(
-    <BrowserRouter>
+    <BrowserRouter basename={'/Training_project'}>
         <AppProvider>
             <AuthProvider>
                 <QueryClientProvider client={queryClient}>
