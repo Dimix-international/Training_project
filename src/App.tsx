@@ -8,7 +8,6 @@ import {EditedPost} from "./pages/EditPost/EditedPost";
 import {Layout} from "./Layout";
 
 import {RequireAuth} from "./hoc/RequireAuth";
-import {AuthProvider} from "./providers/AuthProvider";
 import {AboutPage} from "./pages/About/About";
 import {OurTeam} from "./pages/OurTeam/OurTeam";
 import {OurProducts} from "./pages/Products/Products";
@@ -17,12 +16,13 @@ import {Register} from "./pages/LoginPage/Register/Register";
 import {useAuth} from "./hook/useAuth";
 
 export const App = () => {
+    const {authUser} = useAuth();
 
     return (
-        <AuthProvider>
             <Routes>
-                <Route path={'/'} element={<Layout/>}>
-                    <Route index element={<Home/>}/>
+                <Route path={`/`} element={<Layout/>}>
+                    <Route path={`/`} element={<Navigate to={`home/:${authUser.id}`}/>}/>
+                    <Route path={`home/:${authUser.id}`} element={<Home/>}/>
                     <Route path={'login'} element={<Login/>}/>
                     <Route path={'register'} element={<Register/>}/>
                     <Route path={'post/:id'} element={
@@ -49,18 +49,17 @@ export const App = () => {
                     <Route path={'post/:id/edit'} element={<EditedPost/>}/>
 
                     {/*about/* -любой адрес который начинается с about/ всегда имеет компонент AboutPage*/}
-                    <Route path={'about'} element={<AboutPage />}>
+                    <Route path={'about'} element={<AboutPage/>}>
                         <Route path={'contacts'}
                                element={<p>+375 29 151 25 30</p>}/>
                         <Route path={'team'}
-                               element={<OurTeam />}/>
+                               element={<OurTeam/>}/>
                         <Route path={'products'}
-                               element={<OurProducts />}/>
+                               element={<OurProducts/>}/>
                     </Route>
                     <Route path={'*'} element={<div>Ошибка</div>}/>
                 </Route>
             </Routes>
-        </AuthProvider>
     );
 }
 

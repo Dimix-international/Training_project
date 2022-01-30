@@ -2,14 +2,11 @@ import React from 'react';
 import s from './Navbar.module.scss'
 import {useAuth} from "../hook/useAuth";
 import {CustomLink} from "./CustomLink/CustomLink";
-import {useSearchParams} from "react-router-dom";
 
 type NavbarType = {};
 
 export const Navbar: React.FC<NavbarType> = React.memo((props) => {
-
         const {authUser: user, authDispatch} = useAuth();
-        const [searchParams, setSearchParams] = useSearchParams();
 
         const onClickHandler = () => {
             authDispatch({type: 'delete-user'})

@@ -8,15 +8,18 @@ import {QueryClientProvider} from "react-query";
 import {queryClient} from "./hook/react-query/query-client";
 import {ReactQueryDevtools} from "react-query/devtools";
 import {AppProvider} from "./providers/AppProvider";
-import './firebase'; //для firebase
+import './firebase';
+import {AuthProvider} from "./providers/AuthProvider"; //для firebase
 
 ReactDOM.render(
     <BrowserRouter>
         <AppProvider>
-            <QueryClientProvider client={queryClient}>
-                <App/>
-                <ReactQueryDevtools/>
-            </QueryClientProvider>
+            <AuthProvider>
+                <QueryClientProvider client={queryClient}>
+                    <App/>
+                    <ReactQueryDevtools/>
+                </QueryClientProvider>
+            </AuthProvider>
         </AppProvider>
     </BrowserRouter>,
     document.getElementById('root'));

@@ -1,12 +1,7 @@
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword
-} from 'firebase/auth'
+import {createUserWithEmailAndPassword, getAuth} from 'firebase/auth'
 import {useCallback, useState} from "react";
 import {useAuth} from "../../../hook/useAuth";
-import {useApp} from "../../../hook/useApp";
-import {useNavigate, useSearchParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {InfoType} from "./useSignIn";
 import {useQuery} from "react-query";
 
@@ -19,8 +14,7 @@ const registerUser = async (email: string, password: string) => {
 export const useRegister = () => {
     const {authDispatch} = useAuth();
     const navigate = useNavigate(); //является функцией
-    const [searchParams, setSearchParams] = useSearchParams();
-
+    
     const [info, setInfo] = useState<InfoType>({
         name: '',
         email: '',

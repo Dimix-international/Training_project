@@ -1,8 +1,8 @@
 import {getAuth, signInWithEmailAndPassword} from 'firebase/auth'
 import {useCallback, useState} from "react";
 import {useAuth} from "../../../hook/useAuth";
-import {useNavigate, useSearchParams} from "react-router-dom";
-import {useQuery, useQueryClient} from "react-query";
+import {useNavigate} from "react-router-dom";
+import {useQuery} from "react-query";
 
 export type InfoType = {
     name:string,
@@ -24,7 +24,8 @@ export const useSignIn = () => {
         email: '',
         password: '',
         fromPage: '',
-    })
+    });
+
     const navigate = useNavigate(); //является функцией
     const{error, isLoading} = useQuery(
         ['user', `${info.email}${info.password}`],
@@ -50,7 +51,6 @@ export const useSignIn = () => {
     const setInfoHandler = useCallback((name:string, fromPage: string, email: string, password: string) => {
         setInfo({name, fromPage, email, password})
     }, [])
-
 
     return {
         setInfoHandler,
